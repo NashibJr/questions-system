@@ -5,6 +5,7 @@ import Input from "@/components/Input";
 import Button from "@/components/Button";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schemas/schema";
+import { useRouter } from "next/navigation";
 
 interface loginData {
   email: string;
@@ -13,9 +14,11 @@ interface loginData {
 
 const Login = () => {
   const [user] = React.useState<loginData>({ email: "", password: "" });
+  const router = useRouter();
 
   const handleSubmit = (values: loginData) => {
     console.log(values);
+    router.replace("/dashboard");
   };
 
   const formik = useFormik({
@@ -41,6 +44,7 @@ const Login = () => {
           labelColor="text-white"
           placeholder="Enter email"
           name="email"
+          type="email"
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.errors.email && formik.errors.email}
@@ -51,6 +55,7 @@ const Login = () => {
           labelColor="text-white"
           placeholder="Enter password"
           name="password"
+          type="password"
           value={formik.values.password}
           onChange={formik.handleChange}
           error={formik.errors.password && formik.errors.password}

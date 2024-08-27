@@ -2,21 +2,31 @@ import React, { InputHTMLAttributes } from "react";
 import { PiWarningCircleBold } from "react-icons/pi";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
+  label?: string;
   error?: string;
+  backgroundColor?: string;
+  labelColor?: string;
 };
 
-const Input: React.FC<InputProps> = ({ label, error, ...props }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  backgroundColor,
+  labelColor,
+  ...props
+}) => {
   return (
     <label className="flex flex-col gap-1">
       <span>
-        {label + " "}
+        <span className={`${labelColor && labelColor}`}>{label + " "}</span>
         {props.required && (
           <span className="text-lg font-extrabold text-red-600">*</span>
         )}
       </span>
       <input
-        className="border border-[#d3d3d3] rounded-md p-[6px] w-full outline-none"
+        className={`border border-[#d3d3d3] rounded-md p-[6px] w-full outline-none ${
+          backgroundColor && backgroundColor
+        }`}
         {...props}
       />
       {error && (

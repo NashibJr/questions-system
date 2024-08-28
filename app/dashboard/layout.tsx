@@ -1,10 +1,11 @@
 import React, { PropsWithChildren } from "react";
 import SideLinks from "@/components/navigation/SideLinks";
 import Button from "@/components/Button";
+import TopNavigator from "@/components/navigation/TopNavigator";
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (
-    <div className="container">
+    <div className="container_">
       <nav className="h-screen bg-black text-white">
         <div className="p-4 border-b border-[#d3d3d3] sticky top-0">
           <h2 className="text-3xl font-semibold">Question Generator</h2>
@@ -20,7 +21,10 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
           </div>
         </div>
       </nav>
-      <main>{children}</main>
+      <main>
+        <TopNavigator />
+        {children}
+      </main>
     </div>
   );
 };

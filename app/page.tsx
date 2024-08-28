@@ -18,7 +18,7 @@ const Login = () => {
 
   const handleSubmit = (values: loginData) => {
     console.log(values);
-    router.replace("/dashboard");
+    router.replace("/dashboard/users");
   };
 
   const formik = useFormik({

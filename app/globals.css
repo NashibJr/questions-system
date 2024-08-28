@@ -35,3 +35,13 @@ body {
 .btn:hover {
   box-shadow: 0 0 13px 0 rgba(255, 255, 255, 0.2);
 }
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 18rem minmax(100px, 1fr);
+}
+.active-link {
+  border-bottom: 1px solid #d3d3d3;
+  font-weight: 600;
+}

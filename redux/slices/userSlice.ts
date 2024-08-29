@@ -1,6 +1,6 @@
 import { users } from "@/types/constants";
 import { UserTypes } from "@/types/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface initialStateTypes {
   user: UserTypes | null;
@@ -15,7 +15,13 @@ const initialState: initialStateTypes = {
 const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    login(state, action: PayloadAction<UserTypes>) {
+      state.user = action.payload;
+    },
+  },
 });
+
+export const { login } = userSlice.actions;
 
 export default userSlice;

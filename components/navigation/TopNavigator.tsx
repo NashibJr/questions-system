@@ -1,7 +1,12 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useAppSelector } from "@/redux/hooks";
 
 const TopNavigator = () => {
+  const user = useAppSelector((state) => state.users).user;
+
   return (
     <div className="p-4 shadow-md w-full flex justify-between top-0 sticky bg-white">
       <div />
@@ -14,8 +19,8 @@ const TopNavigator = () => {
           className="rounded-full"
         />
         <div>
-          <p className="text-lg font-semibold">John Doe</p>
-          <p>john@email.com</p>
+          <p className="text-lg font-semibold">{user?.name}</p>
+          <p>{user?.email}</p>
         </div>
       </div>
     </div>

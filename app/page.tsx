@@ -6,6 +6,8 @@ import Button from "@/components/Button";
 import { useFormik } from "formik";
 import { loginSchema } from "@/schemas/schema";
 import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { login } from "@/redux/slices/userSlice";
 
 interface loginData {
   email: string;
@@ -15,10 +17,20 @@ interface loginData {
 const Login = () => {
   const [user] = React.useState<loginData>({ email: "", password: "" });
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const users = useAppSelector((state) => state.users).users;
+  const token = React.useId();
 
   const handleSubmit = (values: loginData) => {
-    console.log(values);
-    router.replace("/dashboard/users");
+    const user = users?.find(
+      (user) => user.email === values.email && user.password === values.password
+    );
+    if (!user) {
+      formik.setErrors({ password: "Inavalid credentials" });
+    } else {
+      dispatch(login({ ...user, token }));
+      router.replace("/dashboard/users");
+    }
   };
 
   const formik = useFormik({

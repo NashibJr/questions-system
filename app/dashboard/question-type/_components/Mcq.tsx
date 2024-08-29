@@ -5,9 +5,12 @@ import Input from "@/components/Input";
 import { QuestionType } from "@/types/types";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hooks";
+import { createQuestion } from "@/redux/slices/questionSlice";
 
 const Mcq = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [questions, setQuestions] = React.useState<QuestionType[]>([]);
   const [question, setQuestion] = React.useState<string>("");
   const id = React.useId();
@@ -50,6 +53,7 @@ const Mcq = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setQuestions((prevState) => [...prevState, myQuestion]);
+    dispatch(createQuestion(myQuestion));
     setAnswer("");
     setChoice({ a: "", b: "", c: "", d: "" });
     setQuestion("");

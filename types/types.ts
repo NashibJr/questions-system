@@ -14,4 +14,6 @@ export interface UserTypes {
   role: "admin" | "user";
   enrolled: boolean;
   token?: string;
+  email: string;
+  avator?: string;
 }

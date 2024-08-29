@@ -7,6 +7,7 @@ export const users: UserTypes[] = [
     enrolled: false,
     password: "1234567",
     role: "user",
+    email: "marcus@email.com",
   },
   {
     id: `${Math.round(Math.random() * 10000)}`,
@@ -14,6 +15,7 @@ export const users: UserTypes[] = [
     enrolled: false,
     password: "1234567",
     role: "user",
+    email: "nashrah@email.com",
   },
   {
     id: `${Math.round(Math.random() * 10000)}`,
@@ -21,6 +23,7 @@ export const users: UserTypes[] = [
     enrolled: false,
     password: "1234567",
     role: "admin",
+    email: "johne@email.com",
   },
   {
     id: `${Math.round(Math.random() * 10000)}`,
@@ -28,5 +31,14 @@ export const users: UserTypes[] = [
     enrolled: false,
     password: "1234567",
     role: "admin",
+    email: "ibra@email.com",
+  },
+  {
+    id: `${Math.round(Math.random() * 10000)}`,
+    name: "Ibra Musana JR",
+    enrolled: false,
+    password: "1234567",
+    role: "user",
+    email: "musamajr10@email.com",
   },
 ];

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const TopNavigator = () => {
   return (
-    <div className="p-4 shadow-md w-full flex justify-between top-0 sticky">
+    <div className="p-4 shadow-md w-full flex justify-between top-0 sticky bg-white">
       <div />
       <div className="flex gap-2">
         <Image

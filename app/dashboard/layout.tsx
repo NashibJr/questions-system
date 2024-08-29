@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="container_">
       <nav className="h-screen bg-black text-white">
-        <div className="p-4 border-b border-[#d3d3d3] sticky top-0">
+        <div className="p-4 border-b border-[#d3d3d3] sticky top-0 bg-black">
           <h2 className="text-3xl font-semibold">Question Generator</h2>
         </div>
         <div className="flex flex-col h-[80vh]">

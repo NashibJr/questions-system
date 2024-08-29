@@ -1,9 +1,13 @@
+"use client";
+
 import React from "react";
 import Input from "@/components/Input";
 import { QuestionType } from "@/types/types";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 const Mcq = () => {
+  const router = useRouter();
   const [questions, setQuestions] = React.useState<QuestionType[]>([]);
   const [question, setQuestion] = React.useState<string>("");
   const id = React.useId();
@@ -12,7 +16,6 @@ const Mcq = () => {
     choices: [],
     id: "",
     question: "",
-    givenAnswer: "",
   });
   const [choice, setChoice] = React.useState<{
     a: string;
@@ -42,7 +45,7 @@ const Mcq = () => {
         { choice: "D", value: choice.d },
       ],
     }));
-  }, [, answer, id, question, choice.a, choice.b, choice.c, choice.d]);
+  }, [answer, id, question, choice.a, choice.b, choice.c, choice.d]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,7 +65,7 @@ const Mcq = () => {
             </p>
             <div className="flex flex-col gap-1">
               <div className="flex gap-5">
-                {question.choices.map((choice) => (
+                {question.choices!.map((choice) => (
                   <p key={choice.choice}>
                     {choice.choice}. {choice.value}
                   </p>
@@ -72,6 +75,14 @@ const Mcq = () => {
             </div>
           </div>
         ))}
+        {questions.length > 0 && (
+          <Button
+            label="Submit"
+            type="submit"
+            className="bg-black text-white p-[6px] h-10 mt-8 rounded-md w-36 ml-5"
+            onClick={() => router.push("/dashboard/users")}
+          />
+        )}
       </div>
       <form className="flex flex-col gap-5 p-5" onSubmit={handleSubmit}>
         <div className="w-2/3">
@@ -81,21 +92,9 @@ const Mcq = () => {
             required
             name="question"
             value={question}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setQuestion(event.target.value);
-              setMyquestion((prevState) => ({
-                ...prevState,
-                answer,
-                id,
-                question,
-                choices: [
-                  { choice: "A", value: choice.a },
-                  { choice: "B", value: choice.b },
-                  { choice: "C", value: choice.c },
-                  { choice: "D", value: choice.d },
-                ],
-              }));
-            }}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+              setQuestion(event.target.value)
+            }
           />
         </div>
         <div className="flex flex-col gap-3">
@@ -142,25 +141,13 @@ const Mcq = () => {
               placeholder="Enter the correct ahoice e.g A"
               name="answer"
               value={answer}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                setAnswer(event.target.value);
-                setMyquestion((prevState) => ({
-                  ...prevState,
-                  answer,
-                  id,
-                  question,
-                  choices: [
-                    { choice: "A", value: choice.a },
-                    { choice: "B", value: choice.b },
-                    { choice: "C", value: choice.c },
-                    { choice: "D", value: choice.d },
-                  ],
-                }));
-              }}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                setAnswer(event.target.value)
+              }
               required
             />
             <Button
-              label="Submit"
+              label="Add"
               type="submit"
               className="bg-black text-white p-[6px] h-10 mt-8 rounded-md"
             />

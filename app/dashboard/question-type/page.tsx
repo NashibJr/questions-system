@@ -9,7 +9,7 @@ import TrueOrFalse from "./_components/TrueOrFalse";
 const QuestionTypes = () => {
   const [questionType, setQuestionType] = React.useState<
     "true/false" | "mcq" | ""
-  >("mcq");
+  >("true/false");
   const handleChange = (value: "true/false" | "mcq") => setQuestionType(value);
 
   return (

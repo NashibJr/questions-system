@@ -3,18 +3,14 @@
 import React from "react";
 import { Table, type TableProps } from "antd";
 import Image from "next/image";
-import Button from "../../../../components/Button";
+import { OrganizationType } from "@/types/types";
 
 interface DataTypes {
-  key: string;
-  name: string;
-  id?: string;
-  email: string;
-  logo: string;
+  organizations: OrganizationType[];
 }
 
-const MyTable = () => {
-  const columns: TableProps<DataTypes>["columns"] = [
+const MyTable: React.FC<DataTypes> = ({ organizations }) => {
+  const columns: TableProps<OrganizationType>["columns"] = [
     {
       title: "Name",
       dataIndex: "name",
@@ -22,7 +18,7 @@ const MyTable = () => {
       render: (_, item) => (
         <div className="flex gap-2">
           <Image
-            src={item.logo}
+            src={item.logo ?? "/assets/images/user.jpeg"}
             width={30}
             height={30}
             alt=""
@@ -33,15 +29,16 @@ const MyTable = () => {
       ),
     },
     {
-      title: "Email",
+      title: "Company Email",
       dataIndex: "email",
       key: "email",
+      render: (_, item) => <p>{item.email}</p>,
     },
   ];
 
   return (
     <div className="p-4">
-      <Table columns={columns} />
+      <Table columns={columns} dataSource={organizations} />
     </div>
   );
 };

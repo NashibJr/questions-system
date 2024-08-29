@@ -5,12 +5,16 @@ import { Table, type TableProps } from "antd";
 import Image from "next/image";
 import Button from "../../../../components/Button";
 import { UserTypes } from "@/types/types";
+import { useAppDispatch } from "@/redux/hooks";
+import { invite } from "@/redux/slices/userSlice";
 
 interface Iprops {
   users: UserTypes[];
 }
 
 const MyTable = ({ users }: Iprops) => {
+  const dispatch = useAppDispatch();
+
   const columns: TableProps<UserTypes>["columns"] = [
     {
       title: "Name",
@@ -45,6 +49,10 @@ const MyTable = ({ users }: Iprops) => {
           className={`p-[6px] rounded-md bg-black outline-none text-white hover:text-black hover:bg-white border border-black ${
             item.role === "admin" && "hidden"
           }`}
+          disabled={item.enrolled}
+          onClick={() => {
+            dispatch(invite(item.id));
+          }}
         />
       ),
     },

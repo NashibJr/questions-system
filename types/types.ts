@@ -16,4 +16,13 @@ export interface UserTypes {
   token?: string;
   email: string;
   avator?: string;
+  invited?: boolean;
 }
+
+export type OrganizationType = {
+  key: string;
+  id: string;
+  name: string;
+  email: string;
+  logo?: string;
+};

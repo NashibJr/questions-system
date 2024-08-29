@@ -5,3 +5,13 @@ export interface QuestionType {
   answer: string;
   givenAnswer?: string;
 }
+
+export interface UserTypes {
+  id: string;
+  key?: string;
+  name: string;
+  password: string;
+  role: "admin" | "user";
+  enrolled: boolean;
+  token?: string;
+}

@@ -93,7 +93,7 @@ const TrueOrFalse = () => {
             </div>
           </div>
           <Button
-            label="Submit"
+            label="Add"
             type="submit"
             className="bg-black text-white p-[6px] h-10 mt-8 rounded-md w-36"
           />

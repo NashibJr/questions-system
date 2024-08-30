@@ -23,9 +23,17 @@ const userSlice = createSlice({
       const user = state.users.find((user) => user.id === action.payload);
       user!.invited = true;
     },
+    logout: (state) => {
+      state.user = null;
+    },
+    enroll: (state) => {
+      if (state.user !== null) {
+        state.user.enrolled = true;
+      }
+    },
   },
 });
 
-export const { login, invite } = userSlice.actions;
+export const { login, invite, logout, enroll } = userSlice.actions;
 
 export default userSlice;

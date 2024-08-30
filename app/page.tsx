@@ -28,7 +28,8 @@ const Login = () => {
     if (!user) {
       formik.setErrors({ password: "Inavalid credentials" });
     } else {
-      dispatch(login({ ...user, token }));
+      const data = { ...user, token };
+      dispatch(login(data));
       router.replace("/dashboard/users");
     }
   };

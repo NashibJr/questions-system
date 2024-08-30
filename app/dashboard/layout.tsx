@@ -1,9 +1,17 @@
+"use client";
+
 import React, { PropsWithChildren } from "react";
 import SideLinks from "@/components/navigation/SideLinks";
 import Button from "@/components/Button";
 import TopNavigator from "@/components/navigation/TopNavigator";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { logout } from "@/redux/slices/userSlice";
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   return (
     <div className="container_">
       <nav className="h-screen bg-black text-white">
@@ -17,6 +25,10 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
               type="button"
               label="Logout"
               className="bg-black w-full text-white p-[6px] rounded-md outline-none border border-white hover:bg-red-500"
+              onClick={() => {
+                dispatch(logout());
+                router.replace("/");
+              }}
             />
           </div>
         </div>

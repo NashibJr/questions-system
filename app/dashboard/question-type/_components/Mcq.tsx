@@ -5,15 +5,18 @@ import Input from "@/components/Input";
 import { QuestionType } from "@/types/types";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { createQuestion } from "@/redux/slices/questionSlice";
+import Mcqquestion from "@/components/Mcqquestion";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Mcq = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.users.user);
   const [questions, setQuestions] = React.useState<QuestionType[]>([]);
   const [question, setQuestion] = React.useState<string>("");
-  const id = React.useId();
+  const id = nanoid();
   const [myQuestion, setMyquestion] = React.useState<QuestionType>({
     answer: "",
     choices: [],
@@ -48,7 +51,8 @@ const Mcq = () => {
         { choice: "D", value: choice.d },
       ],
     }));
-  }, [answer, id, question, choice.a, choice.b, choice.c, choice.d]);
+    dispatch;
+  }, [answer, question, choice.a, choice.b, choice.c, choice.d]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -62,23 +66,7 @@ const Mcq = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col gap-5">
-        {questions?.map((question, index) => (
-          <div className="mt-5 pl-5 flex flex-col gap-4" key={index}>
-            <p>
-              {index + 1}. {question.question}
-            </p>
-            <div className="flex flex-col gap-1">
-              <div className="flex gap-5">
-                {question.choices!.map((choice) => (
-                  <p key={choice.choice}>
-                    {choice.choice}. {choice.value}
-                  </p>
-                ))}
-              </div>
-              <p>Answer: {question.answer}</p>
-            </div>
-          </div>
-        ))}
+        <Mcqquestion questions={questions} user={user!} />
         {questions.length > 0 && (
           <Button
             label="Submit"

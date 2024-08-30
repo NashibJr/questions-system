@@ -7,10 +7,17 @@ import TopNavigator from "@/components/navigation/TopNavigator";
 import { useAppDispatch } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import { logout } from "@/redux/slices/userSlice";
+import { useAppSelector } from "@/redux/hooks";
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const user = useAppSelector((state) => state.users.user);
+  React.useEffect(() => {
+    if (user?.role === "user") {
+      router.replace("/user-dashboard");
+    }
+  }, [user?.id, user?.role, user?.email]);
 
   return (
     <div className="container_">

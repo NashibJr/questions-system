@@ -21,10 +21,16 @@ const Home = () => {
     router.replace("/user-dashboard/questions");
   };
 
+  React.useEffect(() => {
+    if (user?.enrolled) {
+      router.replace("/user-dashboard/questions");
+    }
+  }, [user?.enrolled]);
+
   if (!user?.invited) {
     return (
       <div className="flex flex-col justify-center items-center mt-24 gap-5">
-        <p>You're not invited for any test just yer</p>
+        <p>You're not invited for any test just yet</p>
         <Button
           type="button"
           label="Logout"

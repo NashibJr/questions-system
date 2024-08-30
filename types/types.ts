@@ -4,6 +4,7 @@ export interface QuestionType {
   choices?: { choice: string; value: any }[];
   answer: string;
   givenAnswer?: string;
+  [key: string]: any;
 }
 
 export interface UserTypes {
@@ -25,4 +26,14 @@ export type OrganizationType = {
   name: string;
   email: string;
   logo?: string;
+};
+
+export type AnswerTypes = {
+  question: string;
+  answer: string;
+  giveAnswer: string;
+};
+
+export type ScoreTypes = {
+  questions: QuestionType[];
 };

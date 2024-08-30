@@ -1,5 +1,5 @@
 import { QuestionType } from "@/types/types";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
 
 interface QueProps {
   questions: QuestionType[];

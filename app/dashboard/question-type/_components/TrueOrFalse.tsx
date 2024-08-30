@@ -84,6 +84,7 @@ const TrueOrFalse = () => {
                   value={answer}
                   onChange={() => setAnswer("true")}
                   checked={answer === "true"}
+                  required
                 />{" "}
                 True
               </label>

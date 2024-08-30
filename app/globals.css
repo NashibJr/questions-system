@@ -44,3 +44,12 @@ body {
   border-bottom: 1px solid #d3d3d3;
   font-weight: 600;
 }
+
+.main-content {
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}

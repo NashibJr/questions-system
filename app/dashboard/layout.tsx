@@ -40,7 +40,7 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
           </div>
         </div>
       </nav>
-      <main>
+      <main className="main-content hide-scroll-bar">
         <TopNavigator />
         {children}
       </main>

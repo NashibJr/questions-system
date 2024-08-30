@@ -1,14 +1,20 @@
+"use client";
+
 import React from "react";
 import Input from "@/components/Input";
 import { QuestionType } from "@/types/types";
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
+import { nanoid } from "@reduxjs/toolkit";
+import { useAppDispatch } from "@/redux/hooks";
+import { createQuestion } from "@/redux/slices/questionSlice";
 
 const TrueOrFalse = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [questions, setQuestions] = React.useState<QuestionType[]>([]);
   const [question, setQuestion] = React.useState<string>("");
-  const id = React.useId();
+  const id = nanoid();
   const [myQuestion, setMyquestion] = React.useState<QuestionType>({
     answer: "",
     id: "",
@@ -22,13 +28,14 @@ const TrueOrFalse = () => {
       id,
       question,
     }));
-  }, [answer, id, question]);
+  }, [answer, question]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setQuestions((prevState) => [...prevState, myQuestion]);
     setAnswer("");
     setQuestion("");
+    dispatch(createQuestion(myQuestion));
   };
 
   return (

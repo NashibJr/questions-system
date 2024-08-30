@@ -70,7 +70,7 @@ const Questions = () => {
             </p>
             <div className="flex flex-col gap-1">
               <div className="flex gap-5">
-                {question.choices!.map((choice) => (
+                {question.choices!?.map((choice) => (
                   <p key={choice.choice}>
                     {choice.choice}. {choice.value}
                   </p>
@@ -79,7 +79,11 @@ const Questions = () => {
               <Input
                 type="text"
                 label="Write answer here"
-                placeholder="Enter A, B, C or D"
+                placeholder={
+                  question.choices
+                    ? "Enter A, B, C or D"
+                    : "Enter True or False"
+                }
                 onChange={handleChange}
                 id={question.id}
                 value={question[question.id]}

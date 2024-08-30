@@ -23,7 +23,7 @@ const userSlice = createSlice({
       const user = state.users.find((user) => user.id === action.payload);
       user!.invited = true;
     },
-    logout: (state) => {
+    logout(state) {
       state.user = null;
     },
     enroll: (state) => {

@@ -20,7 +20,13 @@ const Questions = () => {
   }, [user?.email, user?.enrolled]);
 
   React.useEffect(() => {
-    setMyQuestions(questions);
+    setMyQuestions(() =>
+      questions?.map((question) => {
+        const myQn = Object.assign(question, { givenAnswer: "" });
+
+        return myQn;
+      })
+    );
   }, [questions]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
